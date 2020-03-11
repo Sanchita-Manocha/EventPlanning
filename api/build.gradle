@@ -1,0 +1,68 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: "com.google.protobuf"
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/proto'
+        }
+        java {
+            srcDir 'src/main/java'
+            srcDirs 'build/generated/main/grpc'
+            srcDirs 'build/generated/main/java'
+        }
+    }
+    test {
+        proto {
+            srcDir 'src/test/proto'
+        }
+        proto {
+            srcDir 'src/test/java'
+        }
+    }
+}
+
+dependencies {
+    implementation(
+
+            // Armeria
+            "com.linecorp.armeria:armeria:$armeriaVersion",
+            "com.linecorp.armeria:armeria-grpc:$armeriaVersion",
+
+            //grpc
+            "com.google.protobuf:protobuf-java:$protobufVersion",
+            "io.grpc:grpc-protobuf:$grpcVersion",
+
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protobufVersion"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
+        }
+    }
+
+    generateProtoTasks.generatedFilesBaseDir = "$projectDir/build/generated"
+
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}

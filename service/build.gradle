@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+            project(':api'),
+
+            // Armeria
+            "com.linecorp.armeria:armeria:$armeriaVersion",
+            "com.linecorp.armeria:armeria-grpc:$armeriaVersion",
+
+
+            // Logging
+            "ch.qos.logback:logback-classic:$logbackVersion",
+            "org.apache.logging.log4j:log4j-to-slf4j:$log4jToSlf4jVersion",
+            "org.slf4j:jcl-over-slf4j:$slf4jVersion",
+            "org.slf4j:log4j-over-slf4j:$slf4jVersion",
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+

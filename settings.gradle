@@ -1,0 +1,5 @@
+rootProject.name = 'EventPlanner'
+include 'Service'
+include 'api'
+include 'api'
+
