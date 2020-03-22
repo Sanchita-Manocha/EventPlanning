@@ -5,7 +5,7 @@ package com.au.eventplanning.ping;
 
 
 option java_multiple_files = true;
-option java_package = "com.au.eventplanning.ping.grpc.generated";
+option java_package = "com.au.eventplanning.grpc.generated.ping";
 
 service PingService {
     rpc Ping (PingRequest) returns (PingResponse);
