@@ -1,9 +1,10 @@
 package com.au.eventplanning.service;
 
 
-import com.au.grpc.generated.eventPlanning.occasions.ListOccasionsRequest;
-import com.au.grpc.generated.eventPlanning.occasions.ListOccasionsResponse;
-import com.au.grpc.generated.eventPlanning.occasions.ListOccasionsServiceGrpc;
+
+import com.au.eventplanning.grpc.generated.service.ListOccasionsRequest;
+import com.au.eventplanning.grpc.generated.service.ListOccasionsResponse;
+import com.au.eventplanning.grpc.generated.service.ListOccasionsServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import java.util.Arrays;
 import java.util.List;
