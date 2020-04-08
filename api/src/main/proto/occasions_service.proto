@@ -7,7 +7,7 @@ package com.au.eventplanning.service;
 option java_multiple_files = true;
 option java_package = "com.au.eventplanning.grpc.generated.service";
 
-service ListOccasionsService {
+service EventPlanningService {
     rpc ListOccasions (ListOccasionsRequest) returns (ListOccasionsResponse);
     rpc AddOccasion (AddOccasionRequest) returns (AddOccasionResponse);
 }

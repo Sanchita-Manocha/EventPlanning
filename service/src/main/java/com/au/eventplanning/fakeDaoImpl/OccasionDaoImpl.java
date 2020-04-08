@@ -8,16 +8,21 @@ import java.util.List;
 
 public class OccasionDaoImpl implements OccasionDao {
 
-    static List<Occasion> occasions = new ArrayList<>();
+    static List<Occasion> occasions;
+
+    public OccasionDaoImpl() {
+        occasions = new ArrayList<>();
+    }
 
     @Override
     public int insertOccasion(long id,String name) {
         if(idExists(id)){
             return 0;
         }
-        occasions.add(new Occasion(id, name));
-        occasions.stream().forEach(System.out::println);
-        return 1;
+        else {
+            occasions.add(new Occasion(id, name));
+            return 1;
+        }
     }
 
     @Override
@@ -36,6 +41,9 @@ public class OccasionDaoImpl implements OccasionDao {
     }
 
     boolean idExists(long id){
-        return occasions.contains(id);
+
+        return occasions.stream()
+                .filter(occasion -> occasion.getId() == id)
+                .count() > 0;
     }
 }
