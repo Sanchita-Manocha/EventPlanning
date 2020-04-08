@@ -9,6 +9,7 @@ option java_package = "com.au.eventplanning.grpc.generated.service";
 
 service ListOccasionsService {
     rpc ListOccasions (ListOccasionsRequest) returns (ListOccasionsResponse);
+    rpc AddOccasion (AddOccasionRequest) returns (AddOccasionResponse);
 }
 
 message ListOccasionsRequest {
@@ -16,5 +17,19 @@ message ListOccasionsRequest {
 }
 
 message ListOccasionsResponse {
-    repeated string occasions=1;
+    Occasion occasions = 1;
+}
+
+message AddOccasionRequest {
+    int64 id = 1;
+    string name = 2 ;
+}
+
+message AddOccasionResponse {
+    int32 result = 1;
+}
+
+message Occasion{
+    int64 id = 1;
+    string name = 2 ;
 }

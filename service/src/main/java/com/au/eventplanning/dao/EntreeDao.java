@@ -1,7 +1,9 @@
 package com.au.eventplanning.dao;
 
 import com.au.eventplanning.model.Entree;
+import com.au.eventplanning.model.Occasion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface EntreeDao {
