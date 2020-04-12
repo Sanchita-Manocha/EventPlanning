@@ -1,6 +1,7 @@
 package com.au.eventplanning.grpc;
 
 
+import com.au.eventplanning.app.Config;
 import com.au.eventplanning.ping.PingService;
 import com.au.eventplanning.service.EventPlanningService;
 import com.linecorp.armeria.common.grpc.GrpcSerializationFormats;
@@ -10,13 +11,14 @@ import com.linecorp.armeria.server.grpc.GrpcService;
 public class GrpcServices {
 
     private Server server;
+    private Config config;
 
-    public GrpcServices() {
-        this.server = newServer();
+    public GrpcServices(Config config) {
+        this.server = newServer(config.getPORT());
     }
 
-    public Server newServer(){
-        return Server.builder().http(22222)
+    public Server newServer(Integer port){
+        return Server.builder().http(port)
                 .service(GrpcService.builder()
                                 .addService(new PingService())
                                 .addService(new EventPlanningService())
@@ -27,6 +29,10 @@ public class GrpcServices {
 
     public void start() {
         server.start();
+    }
+
+    public void close() {
+        server.close();
     }
 
 
