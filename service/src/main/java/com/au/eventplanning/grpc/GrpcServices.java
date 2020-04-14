@@ -3,7 +3,7 @@ package com.au.eventplanning.grpc;
 
 import com.au.eventplanning.app.Config;
 import com.au.eventplanning.ping.PingService;
-import com.au.eventplanning.service.EventPlanningService;
+import com.au.eventplanning.service.EventPlannerService;
 import com.linecorp.armeria.common.grpc.GrpcSerializationFormats;
 import com.linecorp.armeria.server.Server;
 import com.linecorp.armeria.server.grpc.GrpcService;
@@ -21,7 +21,7 @@ public class GrpcServices {
         return Server.builder().http(port)
                 .service(GrpcService.builder()
                                 .addService(new PingService())
-                                .addService(new EventPlanningService())
+                                .addService(new EventPlannerServiceGrpcWrapper())
                                 .enableUnframedRequests(true)
                                 .supportedSerializationFormats(GrpcSerializationFormats.PROTO, GrpcSerializationFormats.JSON)
                                 .build()).build();
